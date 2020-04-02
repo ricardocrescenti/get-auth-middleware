@@ -1,0 +1,48 @@
+{
+  "name": "get-auth-middleware",
+  "version": "1.0.0",
+  "description": "Package to easily obtain the data needed to authenticate your API from the request header.",
+  "main": "lib/index.js",
+  "types": "lib/index.d.js",
+  "scripts": {
+    "test": "jest --config jestconfig.json",
+    "build": "tsc",
+    "lint": "tslint -p tsconfig.json",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "deploy": "npm run build && npm run lint && npm run test && npm publish",
+    "local": "npm run build && npm run lint && npm run test && npm link"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ricardocrescenti/get-auth-middleware.git"
+  },
+  "keywords": [
+    "auth",
+    "authentication",
+    "firebaseauth",
+    "express",
+    "api"
+  ],
+  "author": {
+    "name": "Ricardo Crescenti",
+    "email": "ricardo.crescenti@gmail.com",
+    "url": "https://github.com/ricardocrescenti"
+  },
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/ricardocrescenti/get-auth-middleware/issues"
+  },
+  "homepage": "https://github.com/ricardocrescenti/get-auth-middleware#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "@types/node": "^12.12.14",
+    "express": "^4.17.1",
+    "jest": "^24.9.0",
+    "prettier": "^1.19.1",
+    "ts-jest": "^24.2.0",
+    "tslint": "^5.20.1",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.7.3"
+  }
+}
