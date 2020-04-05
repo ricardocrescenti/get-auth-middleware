@@ -47,6 +47,10 @@ export function getAuthMiddleware(options: IAuthOptions): MiddlewareCallback {
 }
 
 async function executeMiddleware(middlewares: MiddlewareCallback[], index: number, req: IHttpRequest, res: any): Promise<any> { 
+    if (req.auth) {
+        return;
+    }
+    
     return await middlewares[index](req, res, async (error) => {
         if (error && error.error) {
             return error;
@@ -111,7 +115,7 @@ export function customKeysAuth(options: ICustomAuthOptions): MiddlewareCallback 
             }
 
             /// obter e salvar chave de autenticação
-            result[key] = req.headers[key];
+            result[normalizeName(key)] = req.headers[key];
         }
 
         /// successfully complete middleware
@@ -150,4 +154,12 @@ function ignoredRoute(req: http.IncomingMessage, options: IAuthOptions, next: Ne
         return true;
     }
     return false;
+}
+function normalizeName(name: string): string  { 
+    let underscore: number = name.indexOf('-') + 1;
+    while (underscore > 0) {
+      name = name.replace('-' + name.charAt(underscore), name.charAt(underscore).toUpperCase());
+      underscore = name.indexOf('-') + 1;
+    }  
+    return name;
 }
